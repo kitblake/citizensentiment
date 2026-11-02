@@ -63,7 +63,7 @@ Citizen Sentiment is designed to bridge the gap between active participants and 
 
 1. **Ordinary Citizens**
   - **Who they are**: Residents of Kesennuma city, or people who live elsewhere but work in the city.
-  - **Needs**: Quick and easy access, clear guidance, immediate opportunity to vote and thereby share their opinion.
+  - **Needs**: Quick and easy access, clear guidance, immediate opportunity to share their opinion, voting task completion in 2 minutes.
   - **Pain points**: Complex interaction with existing services, difficulty with tech, unclear community resources, limited communication from the city/district.
 
 2. **Web Content Manager**
@@ -72,9 +72,9 @@ Citizen Sentiment is designed to bridge the gap between active participants and 
   - **Pain points**: Time-consuming manual processes, repetitive technical tasks, support issues, limited capacity for creative contribution.
 
 3. **City Officials**
-  - **Who they are**: Elected officials and civil servants working in the city administration. City council members and other positions serving as liaisons or as representatives of the populace.
+  - **Who they are**: Elected officials and civil servants working in the city administration, city council members, and other positions serving as liaisons or as representatives of the populace.
   - **Needs**: Access to poll results and analysis, ability to propose polls, contact with the city communications team that is responsible for the website, LINE and CrewShip app.
-  - **Pain points**: Difficulty learning how citizens feel about proposed changes within the city, limited access to online feedback tools, complex internet communication systems.
+  - **Pain points**: Difficulty learning how citizens feel about proposed changes within the city, complex internet communication systems, limited access to online feedback tools.
 
 <!-- 4. **Community/Support Worker**
   - **Who they are**: City employee or freelancer responsible for interacting with citizens. The worker functions as both a liaison for the city and a support contact person.
@@ -131,10 +131,11 @@ Citizen Sentiment is designed to bridge the gap between active participants and 
 - **Web Content Manager** creates a poll:
   - Collects text and visual assets used in the poll.
   - Assembles the poll using a web template.
-  - Publishes the poll on the website.
+  - Assembles the poll “Thank you” page using a web template.
   - Tests the poll.
   - Resets the vote count of the poll to zero.
-  - Creates invitations to take the poll on the city website, LINE, and CrewShip app.
+  - Publishes the poll on the website.
+  - Creates invitations to engage with the poll on the website, LINE, and CrewShip app.
   - Exports the invitation as a PDF with QR code.
   - Prints paper flyers and guides the distribution to locations.
   - Delivers the PDF or paper flyers for a mailing to all citizens.
@@ -144,7 +145,7 @@ Citizen Sentiment is designed to bridge the gap between active participants and 
 - **City Official** reviews the results of a poll:
   - Digital: accesses the app and views the poll result page (...poll/result).
   - Analog: receives a report, via email or paper, with the poll result.
-  - Archives the result to be used in a report or in decision making workflow.
+  - Stores the result to be used in a report or in a decision making workflow.
 
 ## Architecture
 
@@ -152,27 +153,45 @@ Citizen Sentiment is intended to be deployed as an app within the Kesennuma city
 
 ### Features
 
-- **Standard simple layout:** The poll has a limited set of page elements, including an eyebrow text, a heading with the title of the poll, a clarifying description text, two options marked A & B, selection indicators, a footnote, and a “Vote” button.
-- **Page header:** The header of the poll page contains navigation and utilities. The exact header elements depend on the design of the parent website (the city website).
-- **Link up to Polls:** One of the header elements is a link from the poll up to the Polls page.
-- **Inherited design:** The polls section must follow the design rules of the city website.
-- **Responsive design:** The poll pages are responsive, adjusting their layout according to the device being used to view the page.
+- **Poll Elements**
+  - **Standard simple layout:** The poll has a limited set of page elements, including an eyebrow text, a heading with the title of the poll, a clarifying description text, two options marked A & B, selection indicators, a footnote with the validity range, and a “Vote” button.
+  - **Page header:** The header of the poll contains navigation and utilities. The exact header elements depend on the design of the parent website (the city website).
+  - **Link up to Polls page:** One of the header elements is a link from the poll up to the Polls page (description below).
+  - **Option panels:** The A/B option panels have several sub-elements: an image, a label with A or B, a selection radio button, a caption, and an image expansion button.
+  - **Image expansion function:** When images are used for the A/B choice, the images can be expanded by tapping on a double-arrow expansion icon. This allows users to closely inspect the image details.
+  - **Textual polls:** The poll can also be textual (with or without images), where a block of text is presented within an option panel. Textual polls can be used for proposed policy changes and such.
+  - **Option selection:** When a user selects A or B, the option panel is highlighted in multiple ways. The panel highlights with a dark border and a pulsing glow. A checkmark appears on the panel and the radio button fills as selected (see the demo site).
+  - **Fixed vote button:** The “Vote” button is fixed to the bottom of the page so it is always in view. Users can scroll the content above the button.
+  - **Dynamic vote button:** When a user accesses the poll and hasn’t yet selected an A or B option, the vote button is inactive and its label reads “Choose A or B”. After the user has made a selection, the vote button label changes to “Vote for A” or “Vote for B”.
 
-- **Option panels:** The A/B option panels have several sub-elements: an image, an A or B label, a selection radio button, a caption, and an image expansion button. 
-- **Image expansion function:** When images are used for the A/B choice, the images can be expanded by tapping on a double-arrow expansion icon. This allows users to closely inspect the image details.
-- **Textual polls:** The poll can also be textual (with or without images), where a block of text is presented within the option panels. Textual polls can be used for proposed policy changes and such. 
-- **Option selection:** When a user selects A or B, the option panel is highlighted with a dark border and a pulsing glow. Also a checkmark appears on the panel (see the demo site). 
-- **Fixed vote button:** The “Vote” button is fixed to the bottom of the page so it is always in view. Users can scroll the content above the button.
-- **Dynamic vote button:** When a user accesses the poll and hasn’t yet selected an A or B option, the vote button label reads “Choose A or B”. After the user has made a selection, the vote button label changes to “Vote for A” or “Vote for B”.
-- **Multilingual user interface:** Polls are displayed in Japanese as the default language. A language switcher is available at the top right of the page with options for English, Indonesian, and perhaps others. If no translation is available the text stays in default Japanese.
-- **Accessibility:** The poll pages must comply with "JIS X 8341-3: 2016", compliance level AA.
+<p></p>
 
-- **Mnemonic naming convention:** Polls must have a short and memorable file name, for instance https://www.kesennuma.miyagi.jp/polls/promenade. This enables citizens to verbally reference the poll. It is not practical to have a cryptic id for the poll name.
-- **Poll result:** The result of a poll is available at ‘.../pollname/result’, e.g. https://www.kesennuma.miyagi.jp/polls/promenade/result. This makes it easy to view the result of any current or previous poll.
+- **App Characteristics**
+  - **Inherited design:** The poll pages must follow the design rules of the city website.
+  - **Responsive design:** The poll pages must be responsive, adjusting their layout according to the device used to view the page.
+  - **Mnemonic naming convention:** Polls must have a short and memorable alphabetical file name, for instance https://www.kesennuma.miyagi.jp/polls/promenade. This enables citizens to verbally reference the poll. It is not practical to have a cryptic id for the poll name.
+  - **Poll result:** The result of a poll is available at ‘.../pollname/result’, e.g. https://www.kesennuma.miyagi.jp/polls/promenade/result. This makes it easy to view the result of any current or previous poll.
+  - **Polls page:** Poll users can navigate up to the Polls page, which is the index of ‘.../polls’. It lists all the polls that have previously been conducted. The polls are listed in chronological order. If the amount of polls exceeds 10, the listing has batching.
+  - **Viewing closed polls:** When viewing a previous poll the label of the Vote button becomes “View Result”. The button links to ‘pollname/result’.
+  - **No authentication:** When a user views a poll there is no login or authentication required. The poll and its result are publicly viewable and the citizen can vote immediately and anonymously.
+  - **Accessibility:** The poll pages must comply with "JIS X 8341-3: 2016", compliance level AA.
+  - **Multilingual user interface:** Polls are displayed in Japanese as the default language. A language switcher is available at the top right of the page with options for English, Indonesian, and perhaps others. If, after a language switch, no translation is available the text stays in default Japanese.
 
-- **Polls page:** Poll users can navigate up to the Polls page, which lists all the polls that have been previously been conducted. The polls are listed in chronological order. If the amount of polls exceeds 10, the listing has batching.
-- **:**
-- **No authentication:**
+<p></p>
 
+- **Backend Functionality**
+  - **Content Management:** The Citizen Sentiment app will have a simple content management system for managing polls. This could be implemented in the system currently in use for the city website. It could also be a different, or custom, system. In both cases a more detailed PRD for the backend content management will need to be created.
+  - **Poll lifecycle:** A poll goes thru different states, proceeding from creation/editing, to publication, to running time, closure, and archiving.
+  - **Poll scheduling:** When a new poll is created it is configured with a start and end date. This determines when it becomes viewable and during what period citizens can engage with the poll.
+  - **Poll archiving:** When a poll reaches its end date it automatically deactivates. The poll gets an archived state and appears in the Polls page listing.
+  - **Poll retirement and deletion:** Polls that have been conducted can be retired, i.e. removed from public view. They can also be deleted for good.
+  - **Detailed results:** The backend will display detailed results per poll, such as the total number of voters, the number who voted for A and B, and the percentages. 
+  - **Statistics:** The backend result page may provide other insights into the poll statistics and usage, such as votes per day. These analytical aspects will need to be specified in the future.
+  - **More:** ?
 
 ### Technical Requirements
+
+- **Fraud Prevention:**
+
+
+WIP...
