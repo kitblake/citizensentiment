@@ -118,8 +118,8 @@ Citizen Sentiment is designed to bridge the gap between active participants and 
   - Reviews the poll and selects an A or B option.
   - Presses the Vote button.
   - Is directed to a “Thank You” page.
-  - (The “Thank You” page contains the current result of the poll in percentages.)
-  - (The “Thank You” page contains information about upcoming milestones, meetings, or opportunities to get more involved.)
+    - The “Thank You” page contains the current result of the poll in percentages.
+    - The page presents information about upcoming milestones, meetings, or opportunities to get more involved.
 
 <p></p>
 
@@ -138,7 +138,7 @@ Citizen Sentiment is designed to bridge the gap between active participants and 
 <p></p>
 
 - **City Official** reviews the results of a poll:
-  - Digital: accesses the app and views the poll result page (...poll/result).
+  - Digital: accesses the app and views the poll result page (`...poll/result`).
   - Analog: receives a report, via email or paper, with the poll result.
   - Stores the result to be used in a report or in a decision making workflow.
 
@@ -149,7 +149,7 @@ Citizen Sentiment is intended to be deployed as an app within the Kesennuma city
 ### Features
 
 - **Poll Elements**
-  - **Standard simple layout:** The poll has a limited set of page elements, including an eyebrow text, a heading with the title of the poll, a clarifying description text, two options marked A & B, selection indicators, a footnote with the validity range, and a “Vote” button.
+  - **Standard simple layout:** The poll has a limited set of page elements, including an eyebrow text, a heading with the title of the poll, a clarifying description text, two options marked A & B, selection indicators, a footnote with the validity range, a footer with a link to the Privacy Policy, and a “Vote” button.
   - **Page header:** The header of the poll contains navigation and utilities. The exact header elements depend on the design of the parent website (the city website).
   - **Link up to Polls page:** One of the header elements is a link from the poll up to the Polls page (description below).
   - **Option panels:** The A/B option panels have several sub-elements: an image, a label with A or B, a selection radio button, a caption, and an image expansion button.
@@ -165,9 +165,9 @@ Citizen Sentiment is intended to be deployed as an app within the Kesennuma city
   - **Inherited design:** The poll pages must follow the design rules of the city website.
   - **Responsive design:** The poll pages must be responsive, adjusting their layout according to the device used to view the page.
   - **Mnemonic naming convention:** Polls must have a short and memorable alphabetical file name, for instance https://www.kesennuma.miyagi.jp/polls/promenade. This enables citizens to verbally reference the poll. It is not practical to have a cryptic id for the poll name.
-  - **Featured poll:** The featured poll is the newest open poll. It can be accessed at .../poll (what the demo flyer points to). This makes it easy to find the current poll. However invitations always link to the full poll name (e.g. ...polls/promenade) to ensure the link will work in the future.
-  - **Poll result:** The result of a poll is available at ‘.../pollname/result’, e.g. https://www.kesennuma.miyagi.jp/polls/promenade/result. This makes it easy to view the result of any current or previous poll.
-  - **Polls page:** Poll users can navigate up to the Polls page, which is the index of ‘.../polls’. It lists all the polls that are currently running and displays a list of previously conducted polls. Polls are listed in chronological order. If the amount of polls exceeds 20, the listing has batching.
+  - **Featured poll:** The featured poll is the newest open poll. It can be accessed at `.../poll` (what the demo flyer points to). This makes it easy to find the current poll. However invitations always link to the full poll name (e.g. `...polls/promenade`) to ensure the link will work in the future.
+  - **Poll result:** The result of a poll is available at `.../pollname/result`, e.g. https://www.kesennuma.miyagi.jp/polls/promenade/result. This makes it easy to view the result of any current or previous poll.
+  - **Polls page:** Poll users can navigate up to the Polls page, which is the index of `.../polls`. It lists all polls that are currently running and displays a list of previously conducted polls. Polls are listed in chronological order. If the amount of polls exceeds 20, the listing has batching.
   - **Viewing closed polls:** When viewing a previous poll the label of the Vote button becomes “View Result”. The button links to `...pollname/result`.
   - **No authentication:** When a user views a poll there is no login or authentication required. A citizen can vote immediately and anonymously. Both the poll and its result are publicly viewable.
   - **Accessibility:** The poll pages must comply with "JIS X 8341-3: 2016", compliance level AA.
@@ -184,11 +184,11 @@ Citizen Sentiment is intended to be deployed as an app within the Kesennuma city
   - **Poll retirement and deletion:** Polls that have been conducted can be retired, i.e. removed from public view. They can also be deleted for good.
   - **Detailed results:** The backend will display detailed results per poll, such as the total number of voters, the number who voted for A and B, and the percentages.
   - **Statistics:** The backend provides other insights into the poll statistics and usage, such as votes per day, votes per channel (each poster/newsletter/web QR code), plus CSV export (Excel-ready Japanese).
-  - **More:** ?
+<!-- - **More:** ? -->
 
 ### Technical Requirements
 
-As the infrastructure of the current Kesennuma City website is unknown, the following requirements are generic. For simplicity, it’s assumed that the Citizen Sentiment app will be a custom implementation in its own environment like the [demo site](https://citizen-sentiment-kesennuma.netlify.app/ja/poll). See the [source code README](https://github.com/AkakpoErnest/HaboSavey/) for details and extensive technical docs.
+As the infrastructure of the current Kesennuma City website is unknown, the following requirements are generic. To keep it simple, it’s assumed that the Citizen Sentiment app will be a custom implementation in its own environment like the [demo site](https://citizen-sentiment-kesennuma.netlify.app/ja/poll). See the [source code README](https://github.com/AkakpoErnest/HaboSavey/) for details and extensive technical docs.
 
 - **Hosting:** The software for the app needs to run on a virtual server. For the demo we used Netlify hosting with static/SSR (Server Side Rendering) served via Netlify Edge. Other provider platforms are an option.
 - **Code Deployment:** Whatever hosting situation is chosen, the instance should be integrated with the source code on Github to enable automated code deployment and builds.
@@ -220,17 +220,15 @@ As the infrastructure of the current Kesennuma City website is unknown, the foll
 - **Infrastructure Cost:** Ensuring reliable hosting without excessive costs.
 - **Operational Costs:** Streamlining man-hour needs for poll operations, ensuring efficient distribution for digital and paper invitations.
 - **Data Privacy:** Maintaining strict compliance with global and local privacy standards. Informing users about how their data is being processed.
-- **Competition from Existing Tools:** Clearly articulating unique value propositions unique to Kesennuma.
+- **Competition from Existing Tools:** Clearly articulating value propositions unique to Kesennuma.
 - **User Adoption and Retention:** Continuously enhancing and simplifying UX/UI to reduce barriers.
 - **Security Vulnerabilities:** Monitoring, conducting regular audits, and maintaining transparent security practices.
 
 
 ## Conclusion
 
-Citizen Sentiment is a deliberately small, low-friction tool with an outsized civic purpose: it converts passive residents into participants by reducing “sharing an opinion” to a two-minute A/B choice. It is reachable through channels Kesennuma already uses: the city website, LINE, CrewShip app, plus paper flyers distributed with a QR code. By returning immediate value to voters through transparent results on the Thank You page, the design directly attacks the core problem identified in the Rationale: citizens feeling uninvolved.
+Citizen Sentiment is a deliberately small, low-friction tool with an outsized civic purpose: it converts passive residents into participants by reducing "sharing an opinion" to a two-minute A/B choice. It reaches citizens through channels Kesennuma already uses: the city website, LINE, CrewShip app, and paper flyers distributed with a QR code. By returning immediate value through transparent results on the Thank You page, the design directly attacks the core problem identified in the Rationale: citizens feeling uninvolved.
 
-The scope is focused as this PRD specifies only the website implementation, deferring channel-specific integrations, and a detailed backend CMS spec, to follow-up work. The requirements remain concrete enough to build against, including JIS X 8341-3:2016 AA accessibility, multilingual support, mnemonic poll URLs, a defined poll lifecycle, and explicit fraud-prevention strategies for anonymous voting.
-
-Success hinges less on the technology, which is comparatively simple, than on operational execution: reliable hosting at sustainable cost, disciplined poll scheduling and distribution, and robust bot protection. If the team can deliver six city-wide polls and reach ten thousand engaged citizens over six months, Citizen Sentiment will have proven a repeatable pattern for municipal consultation. It honors Kesennuma's strong record of citizen engagement while finally giving the majority of residents who never attend a meeting an effortless way to be counted.
+The PRD scope is focused, specifying only the website implementation and deferring channel integrations and backend CMS details to follow-up work. Requirements remain concrete enough to build against, including JIS X 8341-3:2016 AA accessibility, multilingual support, mnemonic poll URLs, a defined poll lifecycle, and fraud prevention for anonymous voting. Success hinges less on technology than on operational execution. Delivering six city-wide polls and ten thousand engaged citizens over six months would prove a repeatable pattern for municipal consultation, giving residents who never attend a meeting an effortless way to be counted.
 
 --
