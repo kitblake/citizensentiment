@@ -24,11 +24,11 @@ Citizen Sentiment is a tool for conducting polls within Kesennuma. The poll is d
 
 In the presentation Citizen Sentiment is described as an ‘app’. However, it’s not intended to be an application on a smartphone. The poll is meant to be a feature of the city website. It operates as an app within the website.
 
-It’s also not the intention that the app will be named Citizen Sentiment (or 市民みんなの声). That’s simply the name of the project.
+It’s also not the intention that the app will be named Citizen Sentiment (or 市民みんなの声). That’s only the name of the project.
 
 ### Scope of this document
 
-This document only describes requirements for the website implementation. Other channels, like LINE or the CrewShip app, can either direct residents to the poll page with a link, or integrate the poll into the platform. Those implementations need to be determined by the responsible administrators.
+This PRD only describes requirements for the website implementation. Other channels, like LINE or the CrewShip app, can either direct residents to the poll page with a link, or integrate the poll into the platform. Those implementations need to be determined by the responsible administrators.
 
 
 ## Rationale
@@ -47,7 +47,7 @@ Kesennuma city has a strong track record in engaging citizens to participate in 
 Citizen Sentiment is designed to bridge the gap between active participants and interested citizens. ‘Active participants’ may attend neighborhood association meetings and invest substantial time in the process. ‘Interested citizens’ are people who would like to share their opinion with the city but don’t make time to get involved with a project.
 
 - Citizen Sentiment disseminates polls about upcoming projects and policy decisions. Typically there is an A/B choice to vote on.
-- Citizen Sentiment is a low-barrier app. No login or authentication is required. The poll is open and any individual can respond.
+- Citizen Sentiment is a low-barrier app. No login is required. The poll is anonymous and any individual can respond.
 - By utilizing a QR code containing a web link, any citizen with a smartphone can easily scan the code and participate in the poll.
 - The poll score (percentage of votes for choice A or B) is transparently shared with participants on the poll “Thank You” page.
 - City officials can access a backend of the app with a more detailed breakdown of citizen participation and preferences.
@@ -82,9 +82,9 @@ Citizen Sentiment is designed to bridge the gap between active participants and 
 
 - As an **Ordinary Citizen**:
   - I want to be informed about proposed changes in the city and share my opinion in a poll.
-  -  I want to share my opinion effortlessly.
-  -  I want to be informed about opportunities in the future to participate in a decision process.
-  -  I want to learn how other residents feel about an issue.
+  - I want to share my opinion effortlessly.
+  - I want to be informed about opportunities in the future to participate in a decision process.
+  - I want to learn how other residents feel about an issue.
 
 <p></p>
 
@@ -142,6 +142,7 @@ Citizen Sentiment is designed to bridge the gap between active participants and 
   - Analog: receives a report, via email or paper, with the poll result.
   - Stores the result to be used in a report or in a decision making workflow.
 
+
 ## Architecture
 
 Citizen Sentiment is intended to be deployed as an app within the Kesennuma city website. It could be accessible at a web address such as https://www.kesennuma.miyagi.jp/polls. It could also be a subdomain, such as https://polls.kesennuma.miyagi.jp/
@@ -184,7 +185,6 @@ Citizen Sentiment is intended to be deployed as an app within the Kesennuma city
   - **Poll retirement and deletion:** Polls that have been conducted can be retired, i.e. removed from public view. They can also be deleted for good.
   - **Detailed results:** The backend will display detailed results per poll, such as the total number of voters, the number who voted for A and B, and the percentages.
   - **Statistics:** The backend provides other insights into the poll statistics and usage, such as votes per day, votes per channel (each poster/newsletter/web QR code), plus CSV export (Excel-ready Japanese).
-<!-- - **More:** ? -->
 
 ### Technical Requirements
 
@@ -198,7 +198,7 @@ As the infrastructure of the current Kesennuma City website is unknown, the foll
   - **One vote per device:** The demo site has a simple mechanism to prevent double voting by citizens. However this solution is not viable in a production environment which has to contend with bots. More robust protection will need to be implemented.
   - **Anonymous Credentials:** In order to prevent fraud the poll could make use of Anonymous Rate-Limited Credentials. This is a [protocol developed at the IETF](https://www.ietf.org/archive/id/draft-privacypass-rate-limit-tokens-00.html).
   - **Anonymous Token-based Rate Limiting:** The easiest way to prevent fraudulent voting may be to use Cloudflare, which has a dedicated offering for per-user rate limits. This article describes [best practices](https://developers.cloudflare.com/waf/rate-limiting-rules/best-practices/).
-- **Note about the Points in the demo site:** During the hackathon we decided to collaborate with another project and offer Points as an incentive. When citizens vote in a poll they receive Points as a reward. These points can be used in the [KesenMemento](https://github.com/ss251/kesenmemento-v2) game, implemented by [Jay Matsushiba]() and [Sailesh Sivakumar](). Likewise, the Nickname feature in the demo site is only needed for the points. This PRD does not cover the Points features or additional game functionality present in the demo site. It focuses only on the Poll aspects as presented on the October 10th Demo Day.
+- **About the Points in the demo site:** During the hackathon we decided to collaborate with another project and offer Points as an incentive. When citizens vote in a poll they receive Points as a reward. These points can be used in the [KesenMemento](https://github.com/ss251/kesenmemento-v2) game, implemented by [Jay Matsushiba]() and [Sailesh Sivakumar](). The Nickname feature in the demo site is only needed for the points. This PRD does not cover the Points features or additional game functionality present in the demo site. It focuses purely on the Poll aspects as presented on the October 10th Demo Day.
 
 
 ## Execution
